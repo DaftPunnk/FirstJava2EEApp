@@ -22,7 +22,8 @@ import session.SchoolsFacade;
  *
  * @author william
  */
-@WebServlet(name = "ControllerServlet", urlPatterns = {"/ControllerServlet","/showSchools","/showStudents","/showResults"})
+@WebServlet(name = "ControllerServlet", urlPatterns = {"/ControllerServlet","/showSchools","/showStudents","/showResults"
+,"/getResults"})
 public class ControllerServlet extends HttpServlet {
 
     @EJB
@@ -67,6 +68,10 @@ public class ControllerServlet extends HttpServlet {
            
            request.setAttribute("schoolslist", schools);
            userPath = "/showResults";
+       }else if (userPath.equals("/getResults")) {
+           
+           userPath = "/getResults";
+           
        }
        
        String url = "/WEB-INF/view" + userPath + ".jsp";
