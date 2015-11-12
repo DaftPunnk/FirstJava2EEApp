@@ -6,6 +6,7 @@
 package controller;
 
 import entity.Schools;
+import entity.Students;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.System.out;
@@ -16,7 +17,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import session.ApparatussFacade;
 import session.SchoolsFacade;
+import session.StudentResultsFacade;
+import session.StudentsFacade;
 
 /**
  *
@@ -28,6 +32,12 @@ public class ControllerServlet extends HttpServlet {
 
     @EJB
     private SchoolsFacade schoolFacade;
+    @EJB
+    private StudentsFacade studentFacade;
+    @EJB
+    private ApparatussFacade apparatusFacade;
+    @EJB
+    private StudentResultsFacade studentresultFacade;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -69,6 +79,12 @@ public class ControllerServlet extends HttpServlet {
            request.setAttribute("schoolslist", schools);
            userPath = "/showResults";
        }else if (userPath.equals("/getResults")) {
+           
+           String studentid = request.getQueryString();
+           
+           Students  selectedStudent = studentFacade.find(Short.parseShort(studentid));
+           
+           request.setAttribute("selectedStudent", selectedStudent);
            
            userPath = "/getResults";
            
