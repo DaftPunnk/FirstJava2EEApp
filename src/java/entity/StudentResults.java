@@ -44,6 +44,11 @@ public class StudentResults implements Serializable {
     public StudentResults() {
     }
 
+    public StudentResults(StudentResultsPK studentResultsPK, Integer intresult) {
+        this.studentResultsPK = studentResultsPK;
+        this.intresult = intresult;
+    }
+
     public StudentResults(StudentResultsPK studentResultsPK) {
         this.studentResultsPK = studentResultsPK;
     }

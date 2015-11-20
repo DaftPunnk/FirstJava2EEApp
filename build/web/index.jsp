@@ -29,12 +29,7 @@
                 <tr>
                     <td><a href="showResults">Show Results</a></td>
                 </tr>
-                <tr>
-                    <td>Add Results</td>
-                </tr>
-                <tr>
-                    <td>Edit Results</td>
-                </tr>
+               
             </tbody>
         </table>
 

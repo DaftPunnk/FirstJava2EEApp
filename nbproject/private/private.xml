@@ -4,12 +4,19 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/william/Documents/NetBeansProjects/FirstJava2EEApp/src/java/controller/ControllerServlet.java</file>
+            <file>file:/C:/Users/william/Documents/NetBeansProjects/FirstJava2EEApp/src/java/session/StudentResultsFacade.java</file>
+            <file>file:/C:/Users/william/Documents/NetBeansProjects/FirstJava2EEApp/web/WEB-INF/view/showStudents.jsp</file>
+            <file>file:/C:/Users/william/Documents/NetBeansProjects/FirstJava2EEApp/web/WEB-INF/view/getResults.jsp</file>
+            <file>file:/C:/Users/william/Documents/NetBeansProjects/FirstJava2EEApp/src/java/entity/StudentResults.java</file>
             <file>file:/C:/Users/william/Documents/NetBeansProjects/FirstJava2EEApp/web/WEB-INF/view/showResults.jsp</file>
             <file>file:/C:/Users/william/Documents/NetBeansProjects/FirstJava2EEApp/web/WEB-INF/view/showSchools.jsp</file>
             <file>file:/C:/Users/william/Documents/NetBeansProjects/FirstJava2EEApp/src/java/entity/Schools.java</file>
+            <file>file:/C:/Users/william/Documents/NetBeansProjects/FirstJava2EEApp/src/java/session/ApparatussFacade.java</file>
+            <file>file:/C:/Users/william/Documents/NetBeansProjects/FirstJava2EEApp/readme.md</file>
+            <file>file:/C:/Users/william/Documents/NetBeansProjects/FirstJava2EEApp/src/java/entity/StudentResultsPK.java</file>
             <file>file:/C:/Users/william/Documents/NetBeansProjects/FirstJava2EEApp/web/index.jsp</file>
-            <file>file:/C:/Users/william/Documents/NetBeansProjects/FirstJava2EEApp/web/WEB-INF/view/showStudents.jsp</file>
             <file>file:/C:/Users/william/Documents/NetBeansProjects/FirstJava2EEApp/src/java/entity/Students.java</file>
+            <file>file:/C:/Users/william/Documents/NetBeansProjects/FirstJava2EEApp/src/java/entity/Apparatuss.java</file>
         </group>
     </open-files>
 </project-private>

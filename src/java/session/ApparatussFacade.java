@@ -6,6 +6,8 @@
 package session;
 
 import entity.Apparatuss;
+import entity.Students;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -26,6 +28,15 @@ public class ApparatussFacade extends AbstractFacade<Apparatuss> {
 
     public ApparatussFacade() {
         super(Apparatuss.class);
+    }
+    
+    public List<Apparatuss> findApparatusNoResult(Students studenttemp) {
+        em.flush();
+        
+        String sqlString = "SELECT t FROM Apparatuss t WHERE t.studentResultsList<>"
+                + "ALL (SELECT u FROM StudentResults u WHERE u.students = :studentobj)";
+        
+        return em.createQuery(sqlString).setParameter("studentobj", studenttemp).getResultList();
     }
     
 }

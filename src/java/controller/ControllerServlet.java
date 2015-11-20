@@ -5,7 +5,9 @@
  */
 package controller;
 
+import entity.Apparatuss;
 import entity.Schools;
+import entity.StudentResults;
 import entity.Students;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -27,7 +29,7 @@ import session.StudentsFacade;
  * @author william
  */
 @WebServlet(name = "ControllerServlet", urlPatterns = {"/ControllerServlet","/showSchools","/showStudents","/showResults"
-,"/getResults"})
+,"/getResults", "/insertNewResult"})
 public class ControllerServlet extends HttpServlet {
 
     @EJB
@@ -56,6 +58,11 @@ public class ControllerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        Students selectedStudent;
+        List<Apparatuss> selectedApparatus;
+        List<StudentResults> studentResults;
+        
        String userPath = request.getServletPath();
        
        if (userPath.equals("/showSchools")) {
@@ -82,9 +89,17 @@ public class ControllerServlet extends HttpServlet {
            
            String studentid = request.getQueryString();
            
-           Students  selectedStudent = studentFacade.find(Short.parseShort(studentid));
+           selectedStudent = studentFacade.find(Short.parseShort(studentid));
            
            request.setAttribute("selectedStudent", selectedStudent);
+           
+           studentResults = studentresultFacade.findResultForStudent(selectedStudent);
+           
+           request.setAttribute("studentResults", studentResults);
+           
+           selectedApparatus = apparatusFacade.findApparatusNoResult(selectedStudent);
+           
+           request.setAttribute("selectedApparatus", selectedApparatus);
            
            userPath = "/getResults";
            
@@ -111,7 +126,48 @@ public class ControllerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
+        Students selectedStudent;
+        List<Apparatuss> selectedApparatus;
+        List<StudentResults> studentResults;
+        
+        String userPath = request.getServletPath();
+        
+        if (userPath.equals("/insertNewResult")) {
+            
+            String apparatusID = request.getParameter("apparatusId");
+            String result = request.getParameter("resultscore");
+            String studentID = request.getParameter("studentId");
+            
+            if (studentID != null) {
+                
+                studentresultFacade.addResult(studentID, result, apparatusID);
+                
+                selectedStudent = studentFacade.find(Short.parseShort(studentID));
+                
+                System.out.println(selectedStudent.getStudentResultsList().size());
+                
+                request.setAttribute("selectedStudent", selectedStudent);
+                
+                studentResults = studentresultFacade.findResultForStudent(selectedStudent);
+                request.setAttribute("studentResults", studentResults);
+                
+                selectedApparatus = apparatusFacade.findApparatusNoResult(selectedStudent);
+                
+                request.setAttribute("selectedApparatus",selectedApparatus );
+            }
+            userPath = "/getResults";
+            
+            String url = "/WEB-INF/view" + userPath + ".jsp";
+       
+       try{
+           request.getRequestDispatcher(url).forward(request, response);
+       }catch (Exception ex) {
+           ex.printStackTrace();
+        }
     }
+    }
+
 
     /**
      * Returns a short description of the servlet.
