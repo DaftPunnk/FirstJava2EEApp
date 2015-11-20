@@ -35,6 +35,13 @@
                 <tr>
                     <td>${tempresult.apparatuss.strapparatusName}</td>
                     <td>${tempresult.intresult}</td>
+                    <td>
+                        <form id="myForm" action="deleteResult" method="POST">
+                            <input type="hidden" value="${tempresult.apparatuss.apparatusId}" name="apparatusId" />
+                            <input type="hidden" value="${selectedStudent.studentId}" name="studentId" />
+                            <input id="confirm_button" type="submit" value="Delete Result" />
+                        </form>
+                    </td>
                 </tr>
             </c:forEach>
         </table>

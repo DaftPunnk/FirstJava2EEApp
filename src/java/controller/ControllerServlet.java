@@ -29,7 +29,7 @@ import session.StudentsFacade;
  * @author william
  */
 @WebServlet(name = "ControllerServlet", urlPatterns = {"/ControllerServlet","/showSchools","/showStudents","/showResults"
-,"/getResults", "/insertNewResult"})
+,"/getResults", "/insertNewResult", "/deleteResult"})
 public class ControllerServlet extends HttpServlet {
 
     @EJB
@@ -164,6 +164,28 @@ public class ControllerServlet extends HttpServlet {
            request.getRequestDispatcher(url).forward(request, response);
        }catch (Exception ex) {
            ex.printStackTrace();
+        }
+    }else if (userPath.equals("/deleteResult")) {
+        
+        String studentDelID = request.getParameter("studentId");
+        String apparatusDelID = request.getParameter("apparatusId");
+        
+        if (studentDelID != null) {
+            studentresultFacade.deleteStudentResult(studentDelID, apparatusDelID);
+            
+            selectedStudent = studentFacade.find(Short.parseShort(studentDelID));
+            
+            request.setAttribute("selectedStudent", selectedStudent);
+            
+            studentResults = studentresultFacade.findResultForStudent(selectedStudent);
+            request.setAttribute("studentResults", studentResults);
+            
+            
+            selectedApparatus = apparatusFacade.findApparatusNoResult(selectedStudent);
+            
+            request.setAttribute("selectedApparatus", selectedApparatus);
+            
+            userPath = "/getResults";
         }
     }
     }
